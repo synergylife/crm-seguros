@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Button, Table } from "@radix-ui/themes";
+import { Card, Button } from "@radix-ui/themes";
 
 const usersDB = [
   { id: 1, name: "Admin", role: "admin", email: "admin@example.com", password: "admin123" },
@@ -55,31 +55,31 @@ const CRM = () => {
           {user.role === "asesor" && (
             <Card className="mt-4 p-4">
               <h2 className="text-xl font-semibold">Registro de Actividades</h2>
-              <Table>
+              <table className="table-auto border-collapse border border-gray-300 w-full mt-4">
                 <thead>
-                  <tr>
-                    <th>Día</th>
-                    <th>Referidos</th>
-                    <th>Contactados</th>
-                    <th>Llamadas</th>
-                    <th>Citas Obtenidas</th>
-                    <th>Citas Planeadas</th>
-                    <th>Nuevas</th>
-                    <th>ANF Planeados</th>
-                    <th>ANF Realizados</th>
-                    <th>Citas Cierre Planeadas</th>
-                    <th>Citas Cierre Realizadas</th>
-                    <th>Solicitudes en Proceso</th>
-                    <th>Solicitudes Emitidas</th>
-                    <th>Total Puntos</th>
+                  <tr className="bg-gray-100">
+                    <th className="border p-2">Día</th>
+                    <th className="border p-2">Referidos</th>
+                    <th className="border p-2">Contactados</th>
+                    <th className="border p-2">Llamadas</th>
+                    <th className="border p-2">Citas Obtenidas</th>
+                    <th className="border p-2">Citas Planeadas</th>
+                    <th className="border p-2">Nuevas</th>
+                    <th className="border p-2">ANF Planeados</th>
+                    <th className="border p-2">ANF Realizados</th>
+                    <th className="border p-2">Citas Cierre Planeadas</th>
+                    <th className="border p-2">Citas Cierre Realizadas</th>
+                    <th className="border p-2">Solicitudes en Proceso</th>
+                    <th className="border p-2">Solicitudes Emitidas</th>
+                    <th className="border p-2">Total Puntos</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.map((row, index) => (
                     <tr key={index}>
-                      <td>{row.day}</td>
+                      <td className="border p-2">{row.day}</td>
                       {Object.keys(row).slice(1).map((field, i) => (
-                        <td key={i}>
+                        <td key={i} className="border p-2">
                           <input
                             type="number"
                             value={row[field]}
@@ -88,20 +88,20 @@ const CRM = () => {
                           />
                         </td>
                       ))}
-                      <td>{Object.values(row).slice(1).reduce((a, b) => a + b, 0)}</td>
+                      <td className="border p-2 font-bold">{Object.values(row).slice(1).reduce((a, b) => a + b, 0)}</td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr>
-                    <td><b>Total Semana</b></td>
+                  <tr className="bg-gray-100">
+                    <td className="border p-2 font-bold">Total Semana</td>
                     {Object.keys(initialData[0]).slice(1).map((field, i) => (
-                      <td key={i}><b>{calculateTotal(field)}</b></td>
+                      <td key={i} className="border p-2 font-bold">{calculateTotal(field)}</td>
                     ))}
-                    <td><b>{Object.keys(initialData[0]).slice(1).reduce((sum, field) => sum + calculateTotal(field), 0)}</b></td>
+                    <td className="border p-2 font-bold">{Object.keys(initialData[0]).slice(1).reduce((sum, field) => sum + calculateTotal(field), 0)}</td>
                   </tr>
                 </tfoot>
-              </Table>
+              </table>
             </Card>
           )}
         </div>
